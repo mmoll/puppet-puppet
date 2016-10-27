@@ -27,7 +27,6 @@ describe 'puppet::agent::service::systemd' do
 
       if os_facts[:osfamily] == 'Archlinux'
         confdir = '/etc/puppetlabs/puppet'
-        bindir  = '/usr/bin'
       end
 
       let :facts do
@@ -40,7 +39,7 @@ describe 'puppet::agent::service::systemd' do
         end
 
         case os
-        when /\Adebian-8/, /\A(redhat|centos|scientific)-7/, /\Afedora-/, /\Aubuntu-16/
+        when /\Adebian-8/, /\A(redhat|centos|scientific)-7/, /\Afedora-/, /\Aubuntu-16/, /\Aarchlinux-/
           it 'should disable systemd timer' do
             should contain_class('puppet::agent::service::systemd').with({
               'enabled' => false,
@@ -80,6 +79,8 @@ describe 'puppet::agent::service::systemd' do
           bindir = '/usr/bin'
         elsif os_facts[:osfamily] == 'FreeBSD'
           bindir = '/usr/local/bin'
+        elsif os_facts[:osfamily] == 'Archlinux'
+          bindir = '/usr/bin'
         else
           bindir = '/opt/puppetlabs/bin'
         end
