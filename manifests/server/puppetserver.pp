@@ -210,9 +210,12 @@ class puppet::server::puppetserver (
     content => template('puppet/server/puppetserver/conf.d/webserver.conf.erb'),
   }
 
-  file { "${server_puppetserver_dir}/conf.d/auth.conf":
-    ensure  => file,
-    content => template('puppet/server/puppetserver/conf.d/auth.conf.erb'),
+  if versioncmp($server_puppetserver_version, '2.2') >= 0 and $server_use_legacy_auth_conf {
+    file { "${server_puppetserver_dir}/conf.d/auth.conf":
+      ensure  => absent,
+    }
+  } else {
+    include ::puppet::server::authorization
   }
 
   if versioncmp($server_puppetserver_version, '2.7') >= 0 {

@@ -416,9 +416,13 @@ class puppet::params {
   $server_ssl_protocols             = [ 'TLSv1.2' ]
   $server_check_for_updates         = true
 
-  # Puppetserver >= 2.2 Which auth.conf shall we use?
-  $server_use_legacy_auth_conf     = false
-
   # For puppetserver 2, certain configuration parameters are version specific. We assume a particular version here.
   $server_puppetserver_version     = '2.7.0'
+
+  # Puppetserver >= 2.2 Which auth.conf shall we use?
+  if versioncmp($server_puppetserver_version, '2.2') >= 0 {
+    $server_use_legacy_auth_conf = false
+  } else {
+    $server_use_legacy_auth_conf = true
+  }
 }
