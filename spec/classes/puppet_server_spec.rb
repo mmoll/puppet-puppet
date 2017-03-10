@@ -17,6 +17,9 @@ describe 'puppet::server' do
           server_package = 'puppet-master'
         end
       end
+      if facts[:osfamily] == 'Suse'
+        server_package = 'rubygem-puppet-master'
+      end
 
       let(:facts) { facts }
 

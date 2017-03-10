@@ -13,6 +13,8 @@ describe 'puppet' do
           puppet_concat    = '/usr/local/etc/puppet/puppet.conf'
           puppet_directory = '/usr/local/etc/puppet'
           puppet_package   = 'puppet38'
+        when 'Suse'
+          puppet_package   = 'rubygem-puppet'
         when 'windows'
           puppet_concat    = 'C:/ProgramData/PuppetLabs/puppet/etc/puppet.conf'
           puppet_directory = 'C:/ProgramData/PuppetLabs/puppet/etc'

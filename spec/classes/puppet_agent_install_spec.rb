@@ -6,6 +6,8 @@ describe 'puppet::agent::install' do
       if Puppet.version < '4.0'
         if facts[:osfamily] == 'FreeBSD'
           client_package = 'puppet38'
+        elsif facts[:osfamily] == 'Suse'
+          client_package = 'rubygem-puppet'
         else
           client_package = 'puppet'
         end

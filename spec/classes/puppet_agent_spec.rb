@@ -10,6 +10,8 @@ describe 'puppet::agent' do
         when 'FreeBSD'
           client_package = 'puppet38'
           confdir        = '/usr/local/etc/puppet'
+        when 'Suse'
+          client_package = 'rubygem-puppet'
         when 'windows'
           client_package = 'puppet'
           confdir        = 'C:/ProgramData/PuppetLabs/puppet/etc'
