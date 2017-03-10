@@ -325,6 +325,8 @@ class puppet::params {
       true    => ['puppet'],
       default => ['puppet-common', 'puppet']
     }
+  } elsif ($::osfamily == 'Suse') {
+     $client_package = ['rubygem-puppet']
   } elsif ($::osfamily =~ /(FreeBSD|DragonFly)/) {
     if (versioncmp($::puppetversion, '4.0') > 0) {
       $client_package = ['puppet4']

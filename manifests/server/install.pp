@@ -18,6 +18,7 @@ class puppet::server::install {
                                       true    => ['puppet-master'],
                                       default => ['puppetmaster-common', 'puppetmaster'],
                                     },
+        'Suse'                  => ['rubygem-puppet-master'],
         /^(FreeBSD|DragonFly)$/ => [],
         default                 => ['puppet-server'],
       },
