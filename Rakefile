@@ -32,4 +32,9 @@ KafoModuleLint::RakeTask.new do |config|
   config.pattern = ["manifests/init.pp"]
 end
 
-task :default => [:validate, :lint, :spec]
+begin
+  require 'parallel_tests'
+  task :default => [:release_checks]
+rescue LoadError
+  task :default => [:validate, :lint, :spec]
+end
