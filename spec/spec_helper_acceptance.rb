@@ -10,6 +10,10 @@ require 'beaker-rspec'
 require 'beaker/puppet_install_helper'
 require 'beaker/module_install_helper'
 
+if fact_on(host, 'osfamily') == 'Debian'
+  install_package(host, 'apt-transport-https') unless check_for_package(host, 'apt-transport-https')
+end
+
 run_puppet_install_helper unless ENV['BEAKER_provision'] == 'no'
 install_module_on(hosts)
 install_module_dependencies_on(hosts)
